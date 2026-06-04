@@ -77,7 +77,7 @@ class CardScreen extends StatelessWidget {
                 radius: 150,
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 200),
 
               // full name
               Text(
@@ -101,59 +101,29 @@ class CardScreen extends StatelessWidget {
               ),
 
               // spacer box MUY GRANDE
-              const SizedBox(height: 300),
-
-              // phone number
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.phone),
-                  const SizedBox(width: 10),
-                  Text(info.phoneNumber),
-                ],
-              ),
-
-              // social handle
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.alternate_email),
-                  const SizedBox(width: 10),
-                  Text(info.socialHandle),
-                ],
-              ),
-
-              // email
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.email),
-                  const SizedBox(width: 10),
-                  Text(info.email),
-                ],
-              ),
-
-              // spacer box MUY GRANDE
               const SizedBox(height: 50),
               
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  
                   MaterialButton(
                     onPressed: () {
                       // 
                     },
                     color: Colors.blue,
+                    minWidth: 150,
                     child: const Text('Previous',
-                                      style: TextStyle(color: Colors.white)),
+                                      style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                   MaterialButton(
                     onPressed: () {
                       // 
                     },
                     color: Colors.blue,
+                    minWidth: 150,
                     child: const Text('Next',
-                                      style: TextStyle(color: Colors.white)),
+                                      style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                 ],
               )
