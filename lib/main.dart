@@ -1,6 +1,3 @@
-// Forked from teammate James Glendinning
-// Large credit to James for most of the below code.
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,40 +9,30 @@ class CardApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Business Card', home: CardScreen());
+    return MaterialApp(
+      title: 'Digital Art Space', 
+      home: CardScreen(),
+    );
   }
 }
 
-class CardInfo {
-  final String fullName;
-  final String title;
-  final String phoneNumber;
-  final String socialHandle;
-  final String email;
 
+class CardInfo {
+  final String artTitle;
+  final String artAuthor;
+  
   const CardInfo({
-    required this.fullName,
-    required this.title,
-    required this.phoneNumber,
-    required this.socialHandle,
-    required this.email,
+    required this.artTitle,
+    required this.artAuthor,
   });
 }
 
 class CardScreen extends StatelessWidget {
   const CardScreen({super.key});
 
-  // was it overkill to make an entire class for this? maybe lol
-  // anyway fill out all the stuff in here and you should be good to go
   final CardInfo info = const CardInfo(
-    fullName: 'Angels Angelos',
-    title: '''Amatuer Software Programmer
-    Aspiring Game Dev''',
-    phoneNumber: '123-456-7890',
-    socialHandle: '@WilNgu486',
-    email: 'real@gmail.com',
-    // assets\images is already in pubspec.yaml (see lines 61-62)
-    // so just download the image you want to use in there and point to it here
+    artTitle: 'BlaBlaBla',
+    artAuthor: 'BlaBlaBla',
   );
 
   @override
@@ -81,7 +68,7 @@ class CardScreen extends StatelessWidget {
 
               // full name
               Text(
-                info.fullName,
+                info.artTitle,
                 style: TextStyle(
                   fontSize: 20,
                   fontFamily: "roboto",
@@ -92,7 +79,7 @@ class CardScreen extends StatelessWidget {
               // title
               Text(
                 textAlign: TextAlign.center,
-                info.title,
+                info.artAuthor,
                 style: TextStyle(
                   fontSize: 16,
                   fontFamily: "courier",
@@ -107,23 +94,45 @@ class CardScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   
-                  MaterialButton(
+                  ElevatedButton(
                     onPressed: () {
                       // 
                     },
-                    color: Colors.blue,
-                    minWidth: 150,
-                    child: const Text('Previous',
-                                      style: TextStyle(color: Colors.white, fontSize: 20)),
+                    style: ElevatedButton.styleFrom(
+                      // Background color
+                      backgroundColor: Colors.blue,
+                      // Button padding
+                      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 12),
+                      // Border radius
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      // Shadow
+                      elevation: 4,
+                    ),
+                    child: const Text(
+                      'Previous',
+                      style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
-                  MaterialButton(
+                  ElevatedButton(
                     onPressed: () {
-                      // 
+                      print('Hi');
                     },
-                    color: Colors.blue,
-                    minWidth: 150,
-                    child: const Text('Next',
-                                      style: TextStyle(color: Colors.white, fontSize: 20)),
+                    style: ElevatedButton.styleFrom(
+                      // Background color
+                      backgroundColor: Colors.blue,
+                      // Button padding
+                      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 12),
+                      // Border radius
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      // Shadow
+                      elevation: 4,
+                    ),
+                    child: const Text(
+                      'Next',
+                      style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                 ],
               )
