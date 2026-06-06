@@ -9,131 +9,152 @@ class CardApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Digital Art Space', 
-      home: CardScreen(),
-    );
+    return MaterialApp(title: 'Digital Art Space', home: ArtScreen());
   }
 }
-
 
 class CardInfo {
   final String artTitle;
   final String artAuthor;
-  
+  final String artLink;
+
   const CardInfo({
     required this.artTitle,
     required this.artAuthor,
+    required this.artLink,
   });
 }
 
-class CardScreen extends StatefulWidget {
-  const CardScreen({super.key});
+class ArtWidget extends StatelessWidget {
+  final CardInfo artInfo;
 
-  @override
-  State<CardScreen> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<CardScreen> {
-  int _counter = 0;
-  var imagePath = "";
-
-  final CardInfo info = const CardInfo(
-    artTitle: 'BlaBlaBla',
-    artAuthor: 'BlaBlaBla',
-  );
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
-  }
+  const ArtWidget({super.key, required this.artInfo});
 
   @override
   Widget build(BuildContext context) {
-    if (_counter == 0) {
-      imagePath = "https://raw.githubusercontent.com/Wil486Thanh/CECS453_Lab02/refs/heads/main/art/art_01.png";
-    };
-    if (_counter == 1) {
-      imagePath = "https://raw.githubusercontent.com/Wil486Thanh/CECS453_Lab02/refs/heads/main/art/art_02.jpg";
-    };
-    if (_counter == 2) {
-      imagePath = "https://raw.githubusercontent.com/Wil486Thanh/CECS453_Lab02/refs/heads/main/art/art_01.png";
-    };
-    if (_counter == 3) {
-      imagePath = "https://raw.githubusercontent.com/Wil486Thanh/CECS453_Lab02/refs/heads/main/art/art_02.jpg";
-    };
-    
+    return Container(
+      child: Column(
+        children: [
+          // avatar image
+          Container(
+            //             decoration: BoxDecoration(
+            //               borderRadius: BorderRadius.circular(8),
+            //               border: Border.all(width: 4, color: Colors.blue),
+            //             ),
+            child: Image.network(this.artInfo.artLink, height: 400),
+          ),
+
+          const SizedBox(height: 100),
+
+          // title
+          Text(
+            this.artInfo.artTitle,
+            style: TextStyle(
+              fontSize: 20,
+              fontFamily: "roboto",
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+
+          // artist
+          Text(
+            textAlign: TextAlign.center,
+            this.artInfo.artAuthor,
+            style: TextStyle(
+              fontSize: 16,
+              fontFamily: "courier",
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ArtScreen extends StatefulWidget {
+  const ArtScreen({super.key});
+
+  @override
+  State<ArtScreen> createState() => _ArtScreenState();
+}
+
+class _ArtScreenState extends State<ArtScreen> {
+  int _artIndex = 0;
+
+  // ----- ARTWORK DECLARATIONS -----
+  final List<CardInfo> artworkList = const [
+    CardInfo(
+      artLink:
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Morton_Schamberg_-_%22God%22_By_Baroness_Elsa_von_Freytag-Loringhoven_and_Morton_Schamberg_-_Google_Art_Project.jpg/500px-Morton_Schamberg_-_%22God%22_By_Baroness_Elsa_von_Freytag-Loringhoven_and_Morton_Schamberg_-_Google_Art_Project.jpg',
+      artTitle: 'God',
+      artAuthor: 'Baroness Elsa von Freytag-Loringhoven and Morton Schamberg',
+    ),
+    CardInfo(
+      artLink:
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg/500px-Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg',
+      artTitle: 'Fountain',
+      artAuthor: 'Marcel Duchamp',
+    ),
+    CardInfo(
+      artLink:
+          'https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg',
+      artTitle: 'La Trahison des images',
+      artAuthor: 'René Magritte',
+    ),
+    CardInfo(
+      artLink:
+          'https://upload.wikimedia.org/wikipedia/en/d/df/ABCD-Hausmann.jpg?_=20240819081323',
+      artTitle: 'ABCD',
+      artAuthor: 'Raoul Hausmann',
+    ),
+    CardInfo(
+      artLink:
+          'https://upload.wikimedia.org/wikipedia/en/1/17/OvalConstruction-Schwitters%2C1925.jpg',
+      artTitle: 'Untitled',
+      artAuthor: 'Kurt Schwitters',
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          // if you want to change the gradient colors, either use Colors.colorname
-          // or just use the hexcode, but add 0xFF before it
           colors: [Color(0xFF6495ED), Color(0xFF696969), Color(0xFF2E8B57)],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
       ),
       child: Scaffold(
-        // if you don't want the gradient, comment out the next line
-        // if you want one solid color, just switch out Colors.transparent
         backgroundColor: Colors.transparent,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // avatar image
-              CircleAvatar(
-                // This will take the image in the repo instead of needing 
-                backgroundImage: NetworkImage(imagePath,
-                ),
-                radius: 150,
-              ),
-
-              const SizedBox(height: 200),
-
-              // full name
-              Text(
-                info.artTitle,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: "roboto",
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              // title
-              Text(
-                textAlign: TextAlign.center,
-                info.artAuthor,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: "courier",
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text("$_counter"),
+              ArtWidget(artInfo: artworkList[_artIndex]),
 
               // spacer box MUY GRANDE
               const SizedBox(height: 50),
-              
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  
                   ElevatedButton(
-                    onPressed: _decrementCounter,
+                    onPressed: () {
+                      setState(() {
+                        _artIndex--;
+                        _artIndex %= artworkList.length;
+                      });
+                    },
                     style: ElevatedButton.styleFrom(
                       // Background color
                       backgroundColor: Colors.blue,
                       // Button padding
-                      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 100,
+                        vertical: 12,
+                      ),
                       // Border radius
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -143,15 +164,24 @@ class _MyHomePageState extends State<CardScreen> {
                     ),
                     child: const Text(
                       'Previous',
-                      style: TextStyle(color: Colors.white, fontSize: 20)),
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
                   ),
                   ElevatedButton(
-                    onPressed: _incrementCounter,
+                    onPressed: () {
+                      setState(() {
+                        _artIndex++;
+                        _artIndex %= artworkList.length;
+                      });
+                    },
                     style: ElevatedButton.styleFrom(
                       // Background color
                       backgroundColor: Colors.blue,
                       // Button padding
-                      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 100,
+                        vertical: 12,
+                      ),
                       // Border radius
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -161,10 +191,11 @@ class _MyHomePageState extends State<CardScreen> {
                     ),
                     child: const Text(
                       'Next',
-                      style: TextStyle(color: Colors.white, fontSize: 20)),
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
