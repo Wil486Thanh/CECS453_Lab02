@@ -27,16 +27,46 @@ class CardInfo {
   });
 }
 
-class CardScreen extends StatelessWidget {
+class CardScreen extends StatefulWidget {
   const CardScreen({super.key});
+
+  @override
+  State<CardScreen> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<CardScreen> {
+  int _counter = 0;
+  var imagePath = "https://raw.githubusercontent.com/Wil486Thanh/CECS453_Lab02/refs/heads/main/art/art_01.png";
 
   final CardInfo info = const CardInfo(
     artTitle: 'BlaBlaBla',
     artAuthor: 'BlaBlaBla',
   );
 
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (_counter == 1) {
+      imagePath = "https://raw.githubusercontent.com/Wil486Thanh/CECS453_Lab02/refs/heads/main/art/art_02.jpg";
+    };
+    if (_counter == 2) {
+      imagePath = "https://raw.githubusercontent.com/Wil486Thanh/CECS453_Lab02/refs/heads/main/art/art_01.png";
+    };
+    if (_counter == 3) {
+      imagePath = "https://raw.githubusercontent.com/Wil486Thanh/CECS453_Lab02/refs/heads/main/art/art_02.jpg";
+    };
+    
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -58,8 +88,7 @@ class CardScreen extends StatelessWidget {
               // avatar image
               CircleAvatar(
                 // This will take the image in the repo instead of needing 
-                backgroundImage: NetworkImage(
-                  'https://raw.githubusercontent.com/Wil486Thanh/CECS453_Lab01/refs/heads/main/wallpaper.jpg',
+                backgroundImage: NetworkImage(imagePath,
                 ),
                 radius: 150,
               ),
@@ -86,6 +115,7 @@ class CardScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              Text("$_counter"),
 
               // spacer box MUY GRANDE
               const SizedBox(height: 50),
@@ -95,9 +125,7 @@ class CardScreen extends StatelessWidget {
                 children: [
                   
                   ElevatedButton(
-                    onPressed: () {
-                      // 
-                    },
+                    onPressed: _decrementCounter,
                     style: ElevatedButton.styleFrom(
                       // Background color
                       backgroundColor: Colors.blue,
@@ -115,9 +143,7 @@ class CardScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      print('Hi');
-                    },
+                    onPressed: _incrementCounter,
                     style: ElevatedButton.styleFrom(
                       // Background color
                       backgroundColor: Colors.blue,
