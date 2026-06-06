@@ -36,7 +36,7 @@ class CardScreen extends StatefulWidget {
 
 class _MyHomePageState extends State<CardScreen> {
   int _counter = 0;
-  var imagePath = "https://raw.githubusercontent.com/Wil486Thanh/CECS453_Lab02/refs/heads/main/art/art_01.png";
+  var imagePath = "";
 
   final CardInfo info = const CardInfo(
     artTitle: 'BlaBlaBla',
@@ -57,6 +57,9 @@ class _MyHomePageState extends State<CardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_counter == 0) {
+      imagePath = "https://raw.githubusercontent.com/Wil486Thanh/CECS453_Lab02/refs/heads/main/art/art_01.png";
+    };
     if (_counter == 1) {
       imagePath = "https://raw.githubusercontent.com/Wil486Thanh/CECS453_Lab02/refs/heads/main/art/art_02.jpg";
     };
