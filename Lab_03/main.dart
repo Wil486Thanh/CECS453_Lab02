@@ -55,6 +55,58 @@ class AffirmationContent {
   const AffirmationContent({required this.text, required this.imageLink});
 }
 
+final List<AffirmationCard> affirmationList = const [
+  AffirmationCard(
+    content: AffirmationContent(
+      // this is a Severance reference lol
+      text: "Your outie is fond of music and owns many records",
+      imageLink:
+          "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
+    ),
+  ),
+  AffirmationCard(
+    content: AffirmationContent(
+      // this is a Severance reference lol
+      text: "Your outie is fond of music and owns many records",
+      imageLink:
+          "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
+    ),
+  ),
+  AffirmationCard(
+    content: AffirmationContent(
+      // this is a Severance reference lol
+      text: "Your outie is fond of music and owns many records",
+      imageLink:
+          "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
+    ),
+  ),
+  AffirmationCard(
+    content: AffirmationContent(
+      // this is a Severance reference lol
+      text: "Your outie is fond of music and owns many records",
+      imageLink:
+          "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
+    ),
+  ),
+  AffirmationCard(
+    content: AffirmationContent(
+      // this is a Severance reference lol
+      text: "Your outie is fond of music and owns many records",
+      imageLink:
+          "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
+    ),
+  ),
+  AffirmationCard(
+    content: AffirmationContent(
+      // this is a Severance reference lol
+      text: "Your outie is fond of music and owns many records",
+      imageLink:
+          "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
+    ),
+  ),
+];
+
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key, required this.title});
 
@@ -64,20 +116,18 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            AffirmationCard(
-              content: AffirmationContent(
-                // this is a Severance reference lol
-                text: "Your outie is fond of music and owns many records",
-                imageLink:
-                    "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
-              ),
+      body: ListView.builder(
+        itemCount: affirmationList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+            child: Column(
+              mainAxisAlignment: .center,
+              children: [
+                affirmationList[index],
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
