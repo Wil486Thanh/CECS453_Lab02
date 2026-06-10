@@ -80,23 +80,9 @@ final List<AffirmationCard> affirmationList = const [
   ),
   AffirmationCard(
     content: AffirmationContent(
-      text: "Your outie is fond of music and owns many records",
+      text: "I am staring at my relection. Beautiful.",
       imageLink:
-          "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
-    ),
-  ),
-  AffirmationCard(
-    content: AffirmationContent(
-      text: "Your outie is fond of music and owns many records",
-      imageLink:
-          "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
-    ),
-  ),
-  AffirmationCard(
-    content: AffirmationContent(
-      text: "Your outie is fond of music and owns many records",
-      imageLink:
-          "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
+          "https://upload.wikimedia.org/wikipedia/commons/9/9a/Cape_may.jpg",
     ),
   ),
 ];
