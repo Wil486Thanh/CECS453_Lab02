@@ -66,7 +66,20 @@ final List<AffirmationCard> affirmationList = const [
   ),
   AffirmationCard(
     content: AffirmationContent(
-      // this is a Severance reference lol
+      text: "Keep trying, one day you'll fly in one of these.",
+      imageLink:
+          "https://raw.githubusercontent.com/Wil486Thanh/CECS453_Labs/refs/heads/main/Lab_02/art/gripene_splintercamo2_4319dd11-68cf-42b3-9ac7-992801229869.jpg",
+    ),
+  ),
+  AffirmationCard(
+    content: AffirmationContent(
+      text: "I must be hard working and I'll even get on stage...",
+      imageLink:
+          "https://raw.githubusercontent.com/Wil486Thanh/CECS453_Labs/refs/heads/main/Lab_02/art/TGA_KEY_ART_Logo_NODate-JPG-4570162e8af0336f58ae-scaled.jpg",
+    ),
+  ),
+  AffirmationCard(
+    content: AffirmationContent(
       text: "Your outie is fond of music and owns many records",
       imageLink:
           "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
@@ -74,7 +87,6 @@ final List<AffirmationCard> affirmationList = const [
   ),
   AffirmationCard(
     content: AffirmationContent(
-      // this is a Severance reference lol
       text: "Your outie is fond of music and owns many records",
       imageLink:
           "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
@@ -82,23 +94,6 @@ final List<AffirmationCard> affirmationList = const [
   ),
   AffirmationCard(
     content: AffirmationContent(
-      // this is a Severance reference lol
-      text: "Your outie is fond of music and owns many records",
-      imageLink:
-          "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
-    ),
-  ),
-  AffirmationCard(
-    content: AffirmationContent(
-      // this is a Severance reference lol
-      text: "Your outie is fond of music and owns many records",
-      imageLink:
-          "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
-    ),
-  ),
-  AffirmationCard(
-    content: AffirmationContent(
-      // this is a Severance reference lol
       text: "Your outie is fond of music and owns many records",
       imageLink:
           "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
