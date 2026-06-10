@@ -129,6 +129,7 @@ class _ArtScreenState extends State<ArtScreen> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: ListView.builder(
+          itemCount: artworkList.length,
           itemBuilder: (BuildContext context, int _artIndex) {
             return Card(
               child: Column(
