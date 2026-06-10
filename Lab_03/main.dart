@@ -14,14 +14,16 @@ class CardApp extends StatelessWidget {
 }
 
 class CardInfo {
-  final String artTitle;
-  final String artAuthor;
+//   final String artTitle;
+//   final String artAuthor;
   final String artLink;
+  final String artLiveLaughLove;
 
   const CardInfo({
-    required this.artTitle,
-    required this.artAuthor,
+//     required this.artTitle,
+//     required this.artAuthor,
     required this.artLink,
+    required this.artLiveLaughLove,
   });
 }
 
@@ -44,7 +46,9 @@ class ArtWidget extends StatelessWidget {
             child: Image.network(this.artInfo.artLink, height: 400),
           ),
 
-          const SizedBox(height: 100),
+          const SizedBox(height: 20),
+          
+          Text(this.artInfo.artLiveLaughLove),
 
           // title
 //           Text(
@@ -86,33 +90,38 @@ class _ArtScreenState extends State<ArtScreen> {
   final List<CardInfo> artworkList = const [
     CardInfo(
       artLink:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Morton_Schamberg_-_%22God%22_By_Baroness_Elsa_von_Freytag-Loringhoven_and_Morton_Schamberg_-_Google_Art_Project.jpg/500px-Morton_Schamberg_-_%22God%22_By_Baroness_Elsa_von_Freytag-Loringhoven_and_Morton_Schamberg_-_Google_Art_Project.jpg',
-      artTitle: 'God',
-      artAuthor: 'Baroness Elsa von Freytag-Loringhoven and Morton Schamberg',
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Live_Laugh_Love_key_holder_%28cropped%29.jpg/1280px-Live_Laugh_Love_key_holder_%28cropped%29.jpg',
+//       artTitle: 'God',
+//       artAuthor: 'Baroness Elsa von Freytag-Loringhoven and Morton Schamberg',
+      artLiveLaughLove: 'Live, Laugh, Love.'
     ),
     CardInfo(
       artLink:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg/500px-Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg',
-      artTitle: 'Fountain',
-      artAuthor: 'Marcel Duchamp',
+//       artTitle: 'Fountain',
+//       artAuthor: 'Marcel Duchamp',
+      artLiveLaughLove: 'I can do better.'
     ),
     CardInfo(
       artLink:
           'https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg',
-      artTitle: 'La Trahison des images',
-      artAuthor: 'René Magritte',
+//       artTitle: 'La Trahison des images',
+//       artAuthor: 'René Magritte',
+      artLiveLaughLove: 'I can do better.'
     ),
     CardInfo(
       artLink:
           'https://upload.wikimedia.org/wikipedia/en/d/df/ABCD-Hausmann.jpg?_=20240819081323',
-      artTitle: 'ABCD',
-      artAuthor: 'Raoul Hausmann',
+//       artTitle: 'ABCD',
+//       artAuthor: 'Raoul Hausmann',
+      artLiveLaughLove: 'I can do better.'
     ),
     CardInfo(
       artLink:
           'https://upload.wikimedia.org/wikipedia/en/1/17/OvalConstruction-Schwitters%2C1925.jpg',
-      artTitle: 'Untitled',
-      artAuthor: 'Kurt Schwitters',
+//       artTitle: 'Untitled',
+//       artAuthor: 'Kurt Schwitters',
+      artLiveLaughLove: 'I can do better.'
     ),
   ];
 
@@ -135,8 +144,7 @@ class _ArtScreenState extends State<ArtScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ListTile(
-                  title: Text(artworkList[_artIndex].artAuthor),),
+                  ListTile(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ArtWidget(artInfo: artworkList[_artIndex]),
