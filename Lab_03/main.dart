@@ -1,82 +1,212 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const CardApp());
+}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class CardApp extends StatelessWidget {
+  const CardApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Affirmations',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorSchemeSeed: Colors.blue),
-      home: const HomePage(title: 'Affirmations!'),
-    );
+    return MaterialApp(title: 'Digital Art Space', home: ArtScreen());
   }
 }
 
-class AffirmationCard extends StatelessWidget {
-  const AffirmationCard({super.key, required this.content});
-  final AffirmationContent content;
+class CardInfo {
+  final String artTitle;
+  final String artAuthor;
+  final String artLink;
+
+  const CardInfo({
+    required this.artTitle,
+    required this.artAuthor,
+    required this.artLink,
+  });
+}
+
+class ArtWidget extends StatelessWidget {
+  final CardInfo artInfo;
+
+  const ArtWidget({super.key, required this.artInfo});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      // clips the image on the top to give it rounded corners
-      clipBehavior: .antiAliasWithSaveLayer,
+    return Container(
       child: Column(
-        crossAxisAlignment: .center,
         children: [
+          // avatar image
           Container(
-            child: Image.network(
-              this.content.imageLink,
-              // keeps a 16:9 aspect ratio
-              // (mostly because I'm using a screenshot from a TV show for testing)
-              width: 480,
-              height: 270,
-            ),
+            //             decoration: BoxDecoration(
+            //               borderRadius: BorderRadius.circular(8),
+            //               border: Border.all(width: 4, color: Colors.blue),
+            //             ),
+            child: Image.network(this.artInfo.artLink, height: 400),
           ),
-          Container(
-            // makes the text not butt directly up to the top or bottom of the card
-            padding: EdgeInsets.only(top: 8, bottom: 8),
-            child: Text(this.content.text),
-          ),
+
+          const SizedBox(height: 100),
+
+          // title
+//           Text(
+//             this.artInfo.artTitle,
+//             style: TextStyle(
+//               fontSize: 20,
+//               fontFamily: "roboto",
+//               fontWeight: FontWeight.bold,
+//             ),
+//           ),
+
+//           // artist
+//           Text(
+//             textAlign: TextAlign.center,
+//             this.artInfo.artAuthor,
+//             style: TextStyle(
+//               fontSize: 16,
+//               fontFamily: "courier",
+//               fontWeight: FontWeight.bold,
+//             ),
+//           ),
         ],
       ),
     );
   }
 }
 
-class AffirmationContent {
-  final String text;
-  final String imageLink;
+class ArtScreen extends StatefulWidget {
+  const ArtScreen({super.key});
 
-  const AffirmationContent({required this.text, required this.imageLink});
+  @override
+  State<ArtScreen> createState() => _ArtScreenState();
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key, required this.title});
+class _ArtScreenState extends State<ArtScreen> {
+//   int _artIndex = 0;
 
-  final String title;
+  // ----- ARTWORK DECLARATIONS -----
+  final List<CardInfo> artworkList = const [
+    CardInfo(
+      artLink:
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Morton_Schamberg_-_%22God%22_By_Baroness_Elsa_von_Freytag-Loringhoven_and_Morton_Schamberg_-_Google_Art_Project.jpg/500px-Morton_Schamberg_-_%22God%22_By_Baroness_Elsa_von_Freytag-Loringhoven_and_Morton_Schamberg_-_Google_Art_Project.jpg',
+      artTitle: 'God',
+      artAuthor: 'Baroness Elsa von Freytag-Loringhoven and Morton Schamberg',
+    ),
+    CardInfo(
+      artLink:
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg/500px-Marcel_Duchamp%2C_1917%2C_Fountain%2C_photograph_by_Alfred_Stieglitz.jpg',
+      artTitle: 'Fountain',
+      artAuthor: 'Marcel Duchamp',
+    ),
+    CardInfo(
+      artLink:
+          'https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg',
+      artTitle: 'La Trahison des images',
+      artAuthor: 'René Magritte',
+    ),
+    CardInfo(
+      artLink:
+          'https://upload.wikimedia.org/wikipedia/en/d/df/ABCD-Hausmann.jpg?_=20240819081323',
+      artTitle: 'ABCD',
+      artAuthor: 'Raoul Hausmann',
+    ),
+    CardInfo(
+      artLink:
+          'https://upload.wikimedia.org/wikipedia/en/1/17/OvalConstruction-Schwitters%2C1925.jpg',
+      artTitle: 'Untitled',
+      artAuthor: 'Kurt Schwitters',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            AffirmationCard(
-              content: AffirmationContent(
-                // this is a Severance reference lol
-                text: "Your outie is fond of music and owns many records",
-                imageLink:
-                    "https://framerusercontent.com/images/qwyTm0UBagGR7tWCWQUiaHLg.webp?width=1600&height=900",
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFF6495ED), Color(0xFF696969), Color(0xFF2E8B57)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: ListView.builder(
+          itemBuilder: (BuildContext context, int _artIndex) {
+            return Card(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ListTile(
+                  title: Text(artworkList[_artIndex].artAuthor),),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ArtWidget(artInfo: artworkList[_artIndex]),
+                  ),
+                  
+//                 // spacer box MUY GRANDE
+//                 const SizedBox(height: 50),
+                  
+//                   Row(
+//                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                   children: [
+// //                     ElevatedButton(
+// //                       onPressed: () {
+// //                         setState(() {
+// //                           _artIndex--;
+// //                           _artIndex %= artworkList.length;
+// //                         });
+// //                       },
+// //                       style: ElevatedButton.styleFrom(
+// //                         // Background color
+// //                         backgroundColor: Colors.blue,
+// //                         // Button padding
+// //                         padding: const EdgeInsets.symmetric(
+// //                           horizontal: 100,
+// //                           vertical: 12,
+// //                         ),
+// //                         // Border radius
+// //                         shape: RoundedRectangleBorder(
+// //                           borderRadius: BorderRadius.circular(8),
+// //                         ),
+// //                         // Shadow
+// //                         elevation: 4,
+// //                       ),
+// //                       child: const Text(
+// //                         'Previous',
+// //                         style: TextStyle(color: Colors.white, fontSize: 20),
+// //                       ),
+// //                     ),
+// //                     ElevatedButton(
+// //                       onPressed: () {
+// //                         setState(() {
+// //                           _artIndex++;
+// //                           _artIndex %= artworkList.length;
+// //                         });
+// //                       },
+// //                       style: ElevatedButton.styleFrom(
+// //                         // Background color
+// //                         backgroundColor: Colors.blue,
+// //                         // Button padding
+// //                         padding: const EdgeInsets.symmetric(
+// //                           horizontal: 100,
+// //                           vertical: 12,
+// //                         ),
+// //                         // Border radius
+// //                         shape: RoundedRectangleBorder(
+// //                           borderRadius: BorderRadius.circular(8),
+// //                         ),
+// //                         // Shadow
+// //                         elevation: 4,
+// //                       ),
+// //                       child: const Text(
+// //                         'Next',
+// //                         style: TextStyle(color: Colors.white, fontSize: 20),
+// //                       ),
+// //                     ),
+// //                   ],
+//                 ),
+                ],
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
